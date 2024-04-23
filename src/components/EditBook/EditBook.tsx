@@ -18,16 +18,14 @@ const EditBook: FC<EditBookProps> = () => {
     const dispatch = useDispatch();
     // setData(book);
     React.useEffect(() => {
-       if(!book) {
-           const http = new HttpService();
-              http.get<Book>(`books/${id}`).then((book) => {
-                setData(book);
-              }).catch((error) => {
-                console.error(error);
-                alert("Book not found")
-                navigate("/")
-              });
-       }
+        const http = new HttpService();
+        http.get<Book>(`books/${id}`).then((book) => {
+            setData(book);
+        }).catch((error) => {
+            console.error(error);
+            alert("Book not found")
+            navigate("/")
+        });
     })
     function edit(e: any) {
         const form = document.getElementById("edit-form") as any;
